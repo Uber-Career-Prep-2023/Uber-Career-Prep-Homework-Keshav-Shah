@@ -22,6 +22,7 @@ def MaxMeanSubArray(arr, k):
     left = 0
     right = k
 
+    # edge cases (array is empty or if k is greater than the length of the array
     if len(arr) < k or not arr:
         return None
 
