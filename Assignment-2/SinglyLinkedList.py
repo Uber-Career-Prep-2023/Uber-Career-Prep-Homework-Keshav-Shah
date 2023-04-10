@@ -2,6 +2,8 @@
 Keshav Shah
 
 Singly Linked List
+
+Implementation Complexity: O(n)
 """
 
 class Node:
