@@ -1,3 +1,11 @@
+"""
+Keshav Shah
+
+Queue
+
+Implementation Complexity: O(n)
+"""
+
 class Queue:
     """
     A simple implementation of a FIFO queue.
