@@ -38,6 +38,8 @@ class IsBST:
                 self.valid(node.right, node.val, right))
 
 def main():
+
+    # Test cases with negative values.
     node1 = Node(4)
     node2 = Node(3)
     node3 = Node(5)
@@ -45,12 +47,22 @@ def main():
     node1.right = node3
 
     tree = IsBST()
-    print(tree.isValidBST(node1))  # Output: True
+    print(tree.isValidBST(node1)) # correctly outputs True
 
-    node4 = Node(100)
-    node2.left = node4
+    node4 = Node(-10)
+    node2.right = node4
 
-    print(tree.isValidBST(node1))  # Output: False
+    print(tree.isValidBST(node1)) # correctly outputs False since node2.left should be = node4
+
+    # Test cases with more layers.
+    node5 = Node(2)
+    node6 = Node(6)
+    node7 = Node(7)
+    node1.left = node5
+    node5.right = node6
+    node6.right = node7
+
+    print(tree.isValidBST(node1)) # correctly outputs False since there are smaller values on the right subtree
 
 
 main()
