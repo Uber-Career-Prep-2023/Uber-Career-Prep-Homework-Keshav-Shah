@@ -76,11 +76,16 @@ class SinglyLinkedList:
             return self.deleteFront()
         previous = None
         current = self.head
-        while current is not loc:
+        while current is not None:
+            if current == loc:
+                if previous is not None:
+                    previous.next = current.next
+                else:
+                    self.head = current.next
+                break
             previous = current
             current = current.next
-        next = current.next
-        previous.next = current
+        return self.head                
 
     # int length(Node head) // returns length of the list
     def length(self):
@@ -131,18 +136,28 @@ class SinglyLinkedList:
         return " -> ".join(nodes)
 
 def main():
-    list = SinglyLinkedList()
-    list.insertAtFront(1)
-    list.insertAtFront(2)
-    list.insertAtFront(3)
-    list.insertAtFront(10)
-    list.insertAtBack(11)
-    list.reverseIterative()
-    list.reverseRecursive()
-    list.deleteFront()
-    list.deleteBack()
-    # expected output: 3 -> 2 -> 1 -> None, functions indeed return this output
-    print(list)
+    linked_list = SinglyLinkedList()
+    linked_list.insertAtFront(1)
+    linked_list.insertAtFront(2)
+    linked_list.insertAtFront(3)
+    linked_list.insertAtFront(10)
+    linked_list.insertAtBack(11)
+    linked_list.reverseIterative()
+    linked_list.reverseRecursive()
+
+    print("Initial linked list:")
+    print(linked_list)
+
+    linked_list.deleteFront()
+    linked_list.deleteBack()
+    print("Linked list after deleting front and back nodes:")
+    print(linked_list)
+
+    # This now correctly implemented the deleteNode method
+    node_to_delete = linked_list.head.next
+    linked_list.deleteNode(node_to_delete)
+    print("Linked list after deleting node:", node_to_delete.val)
+    print(linked_list)
 
 main()
 
