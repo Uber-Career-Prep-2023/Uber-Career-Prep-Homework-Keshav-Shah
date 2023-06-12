@@ -79,14 +79,18 @@ class DoublyLinkedList:
 
     # deletes Node loc; returns head
     def deleteNode(self, loc):
-        if loc == self.head:
-            return self.deleteFront()
-        previous = loc.prev
-        next = loc.next
-        if previous is not None:
-            previous.next = next
-        if next is not None:
-            next.prev = previous
+        if self.head is None:
+            return
+        temp = self.head
+        prev = None
+        while temp.next != loc and temp.next is not None:
+            prev = temp
+            temp = temp.next
+        if temp.next == loc:
+            following = temp.next.next
+            temp.next = following
+            temp.prev = prev
+        return self.head
 
     # int length(Node head) // returns length of the list
     def length(self):
@@ -119,7 +123,8 @@ class DoublyLinkedList:
         prev = self.reverseRecursiveHelper(node.next)
         node.next.next = node
         node.next = None
-        node.pre = prev
+        node.prev = prev
+        prev.prev = node  # Corrected line
         return node
 
     def reverseRecursive(self):
@@ -138,17 +143,27 @@ class DoublyLinkedList:
         return " <-> ".join(nodes)
 
 def main():
-    list = DoublyLinkedList()
-    list.insertAtFront(1)
-    list.insertAtFront(2)
-    list.insertAtFront(3)
-    list.insertAtFront(10)
-    list.insertAtBack(11)
-    list.reverseIterative()
-    list.reverseRecursive()
-    list.deleteFront()
-    list.deleteBack()
-    # expected output: 3 <-> 2 <-> 1 <-> None, functions indeed return this output
-    print(list)
+    linked_list = DoublyLinkedList()
+    linked_list.insertAtFront(1)
+    linked_list.insertAtFront(2)
+    linked_list.insertAtFront(3)
+    linked_list.insertAtFront(10)
+    linked_list.insertAtBack(11)
+    linked_list.reverseIterative()
+    linked_list.reverseRecursive()
+
+    print("Initial linked list:")
+    print(linked_list)
+
+    linked_list.deleteFront()
+    linked_list.deleteBack()
+    print("Linked list after deleting front and back nodes:")
+    print(linked_list)
+
+    node_to_delete = linked_list.head.next
+    #print(node_to_delete.val) # deleting node 2
+    linked_list.deleteNode(node_to_delete)
+    print("Linked list after deleting node:", node_to_delete.val)
+    print(linked_list)
 
 main()
