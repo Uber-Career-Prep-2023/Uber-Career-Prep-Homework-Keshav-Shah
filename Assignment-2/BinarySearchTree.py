@@ -84,12 +84,24 @@ class BST:
                 self.right = self.right.delete(current.val)
         return self
 
+    def inorder_traversal(self):
+        if self.left:
+            self.left.inorder_traversal()
+        print(self.val)
+        if self.right:
+            self.right.inorder_traversal()
+
+        return ""
+
 def main():
     bst = BST(7)
+    print(bst.inorder_traversal()) # correctly outputs root node 7 only
     bst.insert(5)
     bst.insert(10)
     bst.insert(2)
+    print(bst.inorder_traversal()) # correctly returns in order traversal of bst after insertion [2,5,7,10]
     bst.delete(2)
+    print(bst.inorder_traversal()) # correctly outputs in order traversal after deleting node [5,7,10]
     print(bst.min()) # correctly prints 5
     print(bst.max()) # correctly prints 10
     print(bst.contains(7)) # correctly prints True
