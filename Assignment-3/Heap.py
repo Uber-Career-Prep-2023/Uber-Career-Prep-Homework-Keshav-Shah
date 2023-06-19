@@ -10,6 +10,8 @@ class Heap:
         self.heap = []
 
     def top(self):
+        if not self.heap:
+            return None
         return self.heap[0]
 
     # utilize a heapify helper method to heapify the array after a new value is added to the heap
