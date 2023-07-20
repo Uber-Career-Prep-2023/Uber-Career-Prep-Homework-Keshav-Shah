@@ -47,10 +47,13 @@ def main():
     trie.insert("apple")
     trie.insert("britain")
     trie.insert("art")
+    trie.insert("brother")
+    trie.insert("bro")
 
     print(trie.search("apple")) # True
     print(trie.search("britain")) # True
     print(trie.search("app")) # False
+    print(trie.search("bro")) # True
 
     trie.remove("art")
 
